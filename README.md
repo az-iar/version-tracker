@@ -7,5 +7,5 @@ Track changes from git commit. Preview and generate next version for release.
 Review current changes:
 
 ```bash
-php version-tracker preview {path} {--from} {--to}
+php version-tracker review {path} {--from} {--to}
 ```

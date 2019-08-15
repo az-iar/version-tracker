@@ -4,26 +4,25 @@ namespace App\Commands;
 
 use Cz\Git\GitException;
 use Cz\Git\GitRepository;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use LaravelZero\Framework\Commands\Command;
 
-class PreviewCommand extends Command
+class ReviewCommand extends Command
 {
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'preview {path} {--from} {--to}';
+    protected $signature = 'review {path} {--from} {--to}';
 
     /**
      * The description of the command.
      *
      * @var string
      */
-    protected $description = 'Preview current changes';
+    protected $description = 'Review current changes';
 
     /**
      * Execute the console command.
@@ -120,17 +119,6 @@ class PreviewCommand extends Command
         $current = $repo->execute(["describe", "--tags", $lastTagRevision])[0];
         $this->info('Current:' . $current);
         $this->info('Next:' . $this->getNextTag($current, $features, $fixes, $refactor, $tests, $style));
-    }
-
-    /**
-     * Define the command's schedule.
-     *
-     * @param \Illuminate\Console\Scheduling\Schedule $schedule
-     * @return void
-     */
-    public function schedule(Schedule $schedule): void
-    {
-        // $schedule->command(static::class)->everyMinute();
     }
 
     /**
